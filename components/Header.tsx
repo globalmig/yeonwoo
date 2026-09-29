@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { LuMenu, LuPhoneCall, LuX } from "react-icons/lu";
 import { SHOW_FAQ_SECTION, SHOW_SERVICE_SECTION } from "@/lib/site-flags";
 import { COMPANY } from "@/lib/legal";
-
-const TEL_HREF = `tel:${COMPANY.phone.replace(/-/g, "")}`;
+import PhoneLink from "@/components/PhoneLink";
 
 const NAV_LINKS = [
   { href: "#data", label: "지원 현황", show: true },
@@ -150,8 +149,7 @@ export default function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <a
-            href={TEL_HREF}
+          <PhoneLink
             aria-label={`전화 상담 문의 ${COMPANY.phone}`}
             className={`hidden items-center gap-1.5 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition-colors sm:flex ${
               solid
@@ -161,7 +159,7 @@ export default function Header() {
           >
             <LuPhoneCall size={16} />
             전화 상담 문의
-          </a>
+          </PhoneLink>
           <a
             href="#contact"
             onClick={closeMenu}
@@ -213,14 +211,13 @@ export default function Header() {
               );
             })}
             <li className="border-t border-(--color-line)">
-              <a
-                href={TEL_HREF}
+              <PhoneLink
                 onClick={closeMenu}
                 className="flex items-center gap-2 py-3.5 text-base font-semibold text-azure-600"
               >
                 <LuPhoneCall size={18} />
                 전화 상담 {COMPANY.phone}
-              </a>
+              </PhoneLink>
             </li>
           </ul>
         </nav>
