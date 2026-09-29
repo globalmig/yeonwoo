@@ -11,7 +11,7 @@ const CONCERNS = [
 export default function ConcernSection() {
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-360 px-5 py-24 sm:px-8 sm:py-32">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="text-3xl font-extrabold leading-snug text-azure-950 sm:text-4xl">
             혹시 이런 고민이
@@ -27,15 +27,16 @@ export default function ConcernSection() {
           {CONCERNS.map((item) => (
             <div
               key={item.text}
-              className="flex items-center gap-6 rounded-2xl border border-[var(--color-line)] bg-azure-50 px-7 py-7"
+              className="flex items-center gap-4 rounded-2xl border border-(--color-line) bg-azure-50 px-5 py-6 sm:gap-6 sm:px-7 sm:py-7"
             >
               <IconBadge
                 icon={item.icon}
                 size={40}
-                boxClassName="h-20 w-20"
+                boxClassName="h-14 w-14 sm:h-20 sm:w-20"
+                iconClassName="size-7 sm:size-10"
                 className="bg-white text-azure-600"
               />
-              <p className="text-lg font-medium leading-relaxed text-azure-800">
+              <p className="text-base font-medium leading-relaxed text-azure-800 sm:text-lg">
                 {item.text}
               </p>
             </div>

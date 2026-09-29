@@ -8,9 +8,16 @@ interface LegalModalProps {
   doc: LegalDocId;
   className?: string;
   children: ReactNode;
+  /** 하단 "확인" 버튼으로 닫을 때 호출 (예: 동의 체크) */
+  onConfirm?: () => void;
 }
 
-export default function LegalModal({ doc, className = "", children }: LegalModalProps) {
+export default function LegalModal({
+  doc,
+  className = "",
+  children,
+  onConfirm,
+}: LegalModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const { title, intro, sections } = LEGAL_DOCS[doc];
 
@@ -71,7 +78,10 @@ export default function LegalModal({ doc, className = "", children }: LegalModal
         <div className="border-t border-azure-100 px-6 py-4 sm:px-8">
           <button
             type="button"
-            onClick={close}
+            onClick={() => {
+              onConfirm?.();
+              close();
+            }}
             className="w-full rounded-full bg-azure-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-azure-700"
           >
             확인

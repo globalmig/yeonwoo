@@ -106,13 +106,13 @@ export default function ProcessTimeline() {
     "absolute h-3 w-3 rounded-full bg-white shadow-[0_0_14px_5px_rgba(98,170,212,0.85)]";
 
   return (
-    <div ref={rootRef} className="relative mt-20 sm:mt-32">
+    <div ref={rootRef} className="relative mt-14 max-w-xl sm:mt-16 md:mt-0 md:max-w-none lg:mt-32">
       <div
         aria-hidden
-        className="absolute bottom-10 left-10 top-10 w-0.5 rounded-full bg-azure-100 md:hidden"
+        className="absolute bottom-7 left-[27px] top-7 w-0.5 rounded-full bg-azure-100 lg:hidden"
       >
         <div
-          className="relative w-full rounded-full bg-gradient-to-b from-azure-600 to-azure-400 transition-[height]"
+          className="relative w-full rounded-full bg-linear-to-b from-azure-600 to-azure-400 transition-[height]"
           style={{ height: `${progress}%`, ...lineStyle }}
         >
           <span
@@ -122,10 +122,10 @@ export default function ProcessTimeline() {
       </div>
       <div
         aria-hidden
-        className="absolute left-[12.5%] right-[12.5%] top-[51px] hidden h-0.5 rounded-full bg-azure-100 md:block"
+        className="absolute left-[12.5%] right-[12.5%] top-[51px] hidden h-0.5 rounded-full bg-azure-100 lg:block"
       >
         <div
-          className="relative h-full rounded-full bg-gradient-to-r from-azure-600 to-azure-400 transition-[width]"
+          className="relative h-full rounded-full bg-linear-to-r from-azure-600 to-azure-400 transition-[width]"
           style={{ width: `${progress}%`, ...lineStyle }}
         >
           <span className={`${head} -right-1.5 top-1/2 -translate-y-1/2`} />
@@ -141,25 +141,25 @@ export default function ProcessTimeline() {
               left: `${left}%`,
               transitionDelay: lit ? `${TRAVEL_MS * 0.45}ms` : "0ms",
             }}
-            className={`absolute top-[52px] hidden h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-azure-50 transition-all duration-700 md:block ${
+            className={`absolute top-[52px] hidden h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-azure-50 transition-all duration-700 lg:block ${
               lit ? "scale-125 bg-azure-600" : "scale-100 bg-azure-200"
             }`}
           />
         );
       })}
 
-      <ol className="relative grid gap-8 md:grid-cols-4 md:gap-0">
+      <ol className="relative grid gap-6 lg:grid-cols-4 lg:gap-0">
         {STEPS.map((step, i) => {
           const state = i === active ? "current" : i < active ? "done" : "idle";
           return (
             <li
               key={step.no}
               aria-current={state === "current" ? "step" : undefined}
-              className="flex items-center gap-5 md:flex-col md:gap-0"
+              className="flex items-center gap-4 lg:flex-col lg:gap-0 lg:px-2"
             >
               <span
                 style={NODE_TRANSITION}
-                className={`relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full border md:h-[104px] md:w-[104px] ${CIRCLE_STATE[state]}`}
+                className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full border lg:h-[104px] lg:w-[104px] ${CIRCLE_STATE[state]}`}
               >
                 {state === "current" && (
                   <>
@@ -189,27 +189,27 @@ export default function ProcessTimeline() {
                   </>
                 )}
                 <step.icon
-                  className={`relative h-9 w-9 md:h-11 md:w-11 ${
+                  className={`relative h-6 w-6 lg:h-11 lg:w-11 ${
                     state === "current" ? "motion-safe:animate-icon-pop" : ""
                   }`}
                 />
               </span>
               <div
-                className={`flex-1 rounded-2xl px-6 py-4 text-left transition-all duration-700 ease-out md:mt-4 md:w-full md:max-w-[260px] md:flex-none md:py-5 md:text-center ${
+                className={`flex-1 rounded-2xl px-5 py-3.5 text-left transition-all duration-700 ease-out lg:mt-4 lg:w-full lg:max-w-[260px] lg:flex-none lg:py-5 lg:text-center ${
                   state === "current"
-                    ? "bg-white shadow-[0_18px_36px_-14px_rgba(43,112,160,0.4)] md:-translate-y-1.5"
+                    ? "bg-white shadow-[0_18px_36px_-14px_rgba(43,112,160,0.4)] lg:-translate-y-1.5"
                     : "bg-white/90 shadow-[0_14px_32px_-14px_rgba(43,112,160,0.28)]"
                 }`}
               >
                 <p
-                  className={`text-sm font-bold tracking-wide transition-colors duration-700 ${
+                  className={`text-xs font-bold tracking-wide transition-colors lg:text-sm duration-700 ${
                     state === "idle" ? "text-azure-300" : "text-azure-600"
                   }`}
                 >
                   STEP {step.no}
                 </p>
                 <p
-                  className={`mt-1 text-xl font-bold transition-colors duration-700 ${
+                  className={`mt-0.5 text-lg font-bold transition-colors lg:mt-1 lg:text-xl duration-700 ${
                     state === "idle" ? "text-azure-700" : "text-azure-950"
                   }`}
                 >

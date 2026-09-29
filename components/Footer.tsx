@@ -2,8 +2,8 @@ import LegalModal from "@/components/LegalModal";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-line)] bg-azure-50 text-azure-600">
-      <div className="mx-auto max-w-[1440px] px-5 py-16 sm:px-8">
+    <footer className="border-t border-(--color-line) bg-azure-50 text-azure-600">
+      <div className="mx-auto max-w-360 px-5 py-16 sm:px-8">
         <div className="flex flex-col justify-between gap-8 sm:flex-row">
           <div>
             <p className="font-serif text-xl font-bold text-azure-900">연우</p>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className={pretendard.variable}>
-      <body className="flex min-h-screen flex-col bg-white font-sans text-[var(--foreground)] antialiased">
+      <body className="flex min-h-screen flex-col bg-white font-sans text-(--foreground) antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

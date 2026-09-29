@@ -7,7 +7,7 @@ const DOT_GRID = {
 
 export default function FlowBackdrop({ children }: { children: ReactNode }) {
   return (
-    <div className="relative isolate overflow-hidden bg-gradient-to-b from-white via-azure-50 to-azure-100/60">
+    <div className="relative isolate overflow-hidden bg-linear-to-b from-white via-azure-50 to-azure-100/60">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"

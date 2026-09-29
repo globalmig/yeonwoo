@@ -30,7 +30,7 @@ const FUNDS = [
 export default function ServiceSection() {
   return (
     <section id="service">
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-360 px-5 py-24 sm:px-8 sm:py-32">
         <div className="max-w-md">
           <p className="text-sm font-semibold tracking-wide text-accent-600">
             연우가 함께하는 자금

@@ -13,22 +13,22 @@ const CARD_SHADOW = "shadow-[0_12px_32px_-12px_rgba(43,112,160,0.22)]";
 export default function RegionSection() {
   return (
     <section id="region">
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-360 px-5 py-24 sm:px-8 sm:py-32">
         <div className="grid gap-5 xl:grid-cols-[1.7fr_1fr]">
           <div
-            className={`grid overflow-hidden rounded-2xl border border-azure-100 bg-white sm:grid-cols-[260px_1fr] xl:grid-cols-[300px_1fr] ${CARD_SHADOW}`}
+            className={`grid overflow-hidden rounded-2xl border border-azure-100 bg-white sm:grid-cols-[340px_1fr] xl:grid-cols-[400px_1fr] ${CARD_SHADOW}`}
           >
-            <div className="relative min-h-[280px] sm:min-h-0">
+            <div className="relative min-h-80 sm:min-h-0">
               <Image
-                src="/images/person.jpg"
-                alt="환하게 웃으며 파이팅하는 소상공인 사장님 두 분"
+                src="/view.jpg"
+                alt="강을 따라 아파트와 주택가가 펼쳐진 도심과 산을 내려다본 항공 풍경"
                 fill
-                sizes="(min-width: 1280px) 300px, (min-width: 640px) 260px, 100vw"
-                className="object-cover object-[50%_30%]"
+                sizes="(min-width: 1280px) 400px, (min-width: 640px) 340px, 100vw"
+                className="object-cover object-[40%_60%]"
               />
             </div>
 
-            <div className="flex flex-col justify-center px-6 pb-8 pt-6 sm:px-8 sm:py-10 xl:pr-10">
+            <div className="flex flex-col justify-center px-5 pb-8 pt-6 sm:px-8 sm:py-10 xl:pr-10">
               <p className="text-base font-bold text-accent-600">
                 사장님마다 상황이 다르니까요.
               </p>
@@ -42,14 +42,14 @@ export default function RegionSection() {
                 연우는 먼저 사장님의 상황을 확인합니다.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-2.5">
+              <div className="mt-6 flex flex-wrap gap-1.5 sm:mt-7 sm:gap-2.5">
                 {REGIONS.map((region) => (
                   <div
                     key={region.ko}
-                    className="flex items-center gap-2 rounded-xl border border-azure-100 bg-azure-50 px-3 py-2.5"
+                    className="flex items-center gap-1 rounded-lg border border-azure-100 bg-azure-50 px-2.5 py-1.5 sm:gap-2 sm:rounded-xl sm:px-3 sm:py-2.5"
                   >
-                    <LuMapPin className="text-accent-600" size={18} />
-                    <p className="font-bold text-azure-900">{region.ko}</p>
+                    <LuMapPin className="size-3.5 text-accent-600 sm:size-4.5" size={18} />
+                    <p className="text-sm font-bold text-azure-900 sm:text-base">{region.ko}</p>
                     <p className="hidden text-xs tracking-wide text-azure-500 sm:block">
                       {region.en}
                     </p>
@@ -60,20 +60,22 @@ export default function RegionSection() {
           </div>
 
           <div
-            className={`flex flex-col justify-center rounded-2xl border border-azure-100 bg-white p-8 sm:p-10 md:flex-row md:items-center md:justify-between xl:flex-col xl:items-stretch xl:justify-center ${CARD_SHADOW}`}
+            className={`flex flex-col justify-center rounded-2xl border border-azure-100 bg-white px-5 py-8 sm:p-10 md:flex-row md:items-center md:justify-between xl:flex-col xl:items-stretch xl:justify-center ${CARD_SHADOW}`}
           >
-            <div className="flex items-start gap-5">
-              <IconBadge
-                icon={LuShieldCheck}
-                size={30}
-                boxClassName="h-16 w-16"
-                className="bg-azure-600 text-white"
-              />
-              <div>
+            <div>
+              <div className="flex items-center gap-3">
+                <IconBadge
+                  icon={LuShieldCheck}
+                  size={22}
+                  boxClassName="h-10 w-10 sm:h-12 sm:w-12"
+                  className="bg-azure-600 text-white"
+                />
                 <p className="text-sm font-semibold text-accent-600">
                   연우가 중요하게 생각하는 것
                 </p>
-                <h3 className="mt-2 text-2xl font-extrabold leading-snug text-azure-950">
+              </div>
+              <div>
+                <h3 className="mt-5 text-xl font-extrabold leading-snug text-azure-950 min-[360px]:text-2xl sm:mt-4">
                   무조건 가능하다고
                   <br />
                   말씀드리지 않습니다.
@@ -85,9 +87,15 @@ export default function RegionSection() {
                 </p>
               </div>
             </div>
-            <p className="mt-6 -rotate-2 self-end text-sm font-semibold text-accent-600 md:mt-0 md:self-center xl:mt-6 xl:self-end">
-              사장님의 든든한 동반자가 되겠습니다.
-            </p>
+            <div className="relative mt-8 aspect-2159/300 w-full max-w-56 -rotate-2 self-end overflow-hidden sm:mt-6 sm:max-w-72 md:mt-0 md:self-center xl:mt-6 xl:self-end">
+              <Image
+                src="/typo-partner.png"
+                alt="사장님의 든든한 동반자가 되겠습니다."
+                fill
+                sizes="288px"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

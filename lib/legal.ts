@@ -1,10 +1,6 @@
-// TODO: 사업자 정보 확정 후 대괄호 항목 교체
 export const COMPANY = {
   name: "연우",
-  representative: "[대표자명]",
-  privacyOfficer: "[개인정보 보호책임자명]",
-  phone: "[대표 전화번호]",
-  email: "[이메일 주소]",
+  phone: "010-3796-3333",
 };
 
 export const EFFECTIVE_DATE = "2026년 10월 1일";
@@ -84,16 +80,7 @@ export const LEGAL_DOCS: Record<LegalDocId, LegalDoc> = {
         ],
       },
       {
-        heading: "제9조 (개인정보 보호책임자)",
-        body: [
-          "회사는 개인정보 처리에 관한 업무를 총괄하여 책임지고, 이와 관련한 이용자의 불만 처리 및 피해 구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.",
-          `· 개인정보 보호책임자: ${COMPANY.privacyOfficer}`,
-          `· 연락처: ${COMPANY.phone} / ${COMPANY.email}`,
-          "기타 개인정보 침해에 대한 신고나 상담이 필요한 경우 개인정보침해신고센터(privacy.kisa.or.kr / 국번없이 118), 개인정보분쟁조정위원회(www.kopico.go.kr / 1833-6972)에 문의하실 수 있습니다.",
-        ],
-      },
-      {
-        heading: "제10조 (개인정보처리방침의 변경)",
+        heading: "제9조 (개인정보처리방침의 변경)",
         body: [
           `본 개인정보처리방침은 ${EFFECTIVE_DATE}부터 적용됩니다. 내용의 추가, 삭제 및 수정이 있을 경우 시행 7일 전부터 웹사이트를 통해 고지합니다.`,
         ],

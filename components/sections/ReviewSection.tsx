@@ -3,7 +3,7 @@ const REVIEW_SLOTS = [1, 2, 3];
 export default function ReviewSection() {
   return (
     <section className="bg-white">
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-360 px-5 py-24 sm:px-8 sm:py-32">
         <h2 className="text-center text-3xl font-extrabold leading-snug text-azure-950 sm:text-4xl">
           연우와 함께한 이야기
         </h2>

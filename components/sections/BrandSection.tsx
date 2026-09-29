@@ -22,13 +22,9 @@ const REGIONS = [
   },
 ];
 
-const HANJA_FONT = {
-  fontFamily: '"Batang", "AppleMyungjo", "Noto Serif CJK KR", serif',
-};
-
 export default function BrandSection() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section id="about" className="relative isolate overflow-hidden">
       <Image
         src="/images/BG_company.png"
         alt=""
@@ -46,32 +42,34 @@ export default function BrandSection() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1440px] px-5 py-24 text-center sm:px-8 sm:py-32">
+      <div className="relative mx-auto max-w-360 px-5 py-24 text-center sm:px-8 sm:py-32">
         <p className="text-xs font-medium tracking-[0.5em] text-azure-700">
           YEONWOO
         </p>
 
-        <div className="mt-6 flex items-start justify-center gap-6 sm:gap-10">
+        <div className="mt-6 flex items-start justify-center gap-4 sm:gap-8">
           <div>
-            <p
-              style={HANJA_FONT}
-              className="text-6xl font-bold leading-none text-accent-600 sm:text-7xl"
-            >
-              緣
-            </p>
+            <Image
+              src="/images/hanja-yeon.png"
+              alt="緣"
+              width={583}
+              height={453}
+              className="mx-auto h-15 w-auto sm:h-18"
+            />
             <p className="mt-3 text-xs text-azure-700">인연 연(緣)</p>
           </div>
           <span
             aria-hidden
-            className="mt-[30px] h-px w-14 bg-accent-600/70 sm:mt-9 sm:w-20"
+            className="mt-[30px] h-px w-12 bg-accent-600/70 sm:mt-9 sm:w-16"
           />
           <div>
-            <p
-              style={HANJA_FONT}
-              className="text-6xl font-bold leading-none text-accent-600 sm:text-7xl"
-            >
-              友
-            </p>
+            <Image
+              src="/images/hanja-woo.png"
+              alt="友"
+              width={528}
+              height={438}
+              className="mx-auto h-15 w-auto sm:h-18"
+            />
             <p className="mt-3 text-xs text-azure-700">벗 우(友)</p>
           </div>
         </div>
@@ -90,13 +88,13 @@ export default function BrandSection() {
           가까운 벗이 되겠습니다.
         </p>
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-4 md:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-6xl gap-3 sm:mt-14 sm:gap-4 md:grid-cols-3">
           {REGIONS.map((region) => (
             <div
               key={region.ko}
-              className="flex items-center gap-4 rounded-2xl bg-white/90 px-6 py-5 text-left shadow-[0_14px_32px_-14px_rgba(43,112,160,0.35)] backdrop-blur-sm"
+              className="flex items-center gap-4 rounded-2xl bg-white/90 px-5 py-4 text-left sm:px-6 sm:py-5 shadow-[0_14px_32px_-14px_rgba(43,112,160,0.35)] backdrop-blur-sm"
             >
-              <region.icon className="h-10 w-10 shrink-0 text-azure-600" />
+              <region.icon className="h-7 w-7 shrink-0 text-azure-600 sm:h-9 sm:w-9" />
               <div>
                 <p className="flex items-baseline gap-2">
                   <span className="text-lg font-bold text-azure-950">

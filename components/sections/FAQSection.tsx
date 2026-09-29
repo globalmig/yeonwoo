@@ -31,7 +31,7 @@ export default function FAQSection() {
           자주 묻는 질문
         </h2>
 
-        <div className="mt-12 divide-y divide-[var(--color-line)] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-white">
+        <div className="mt-12 divide-y divide-(--color-line) overflow-hidden rounded-2xl border border-(--color-line) bg-white">
           {FAQS.map((item, i) => {
             const isOpen = openIndex === i;
             return (

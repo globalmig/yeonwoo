@@ -19,9 +19,9 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-gradient-to-b from-white via-white via-55% to-azure-50"
+      className="bg-linear-to-b from-white via-white via-55% to-azure-50"
     >
-      <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-2 lg:items-center">
+      <div className="mx-auto grid max-w-360 gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-2 lg:items-center">
         <div>
           <p className="text-lg font-bold text-accent-600">
             지금 바로, 연우와 상담해보세요.
@@ -45,7 +45,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-azure-100 bg-white p-6 shadow-[0_12px_32px_-12px_rgba(43,112,160,0.22)] sm:p-8">
+        <div className="rounded-2xl border border-azure-100 bg-white p-5 shadow-[0_12px_32px_-12px_rgba(43,112,160,0.22)] sm:p-8">
           {submitted ? (
             <div className="flex flex-col items-center gap-3 py-16 text-center">
               <p className="text-lg font-bold text-azure-900">
@@ -85,13 +85,13 @@ export default function ContactSection() {
                 <span className="mb-1.5 block text-sm font-medium text-azure-800">
                   사업 지역
                 </span>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-4 gap-1.5 sm:flex sm:flex-wrap sm:gap-2">
                   {REGIONS.map((r) => (
                     <button
                       key={r}
                       type="button"
                       onClick={() => setRegion(r)}
-                      className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                      className={`rounded-full border px-2 py-2 text-sm font-medium transition-colors sm:px-4 ${
                         region === r
                           ? "border-azure-600 bg-azure-600 text-white"
                           : "border-azure-200 text-azure-600 hover:border-azure-400"
@@ -126,28 +126,34 @@ export default function ContactSection() {
                 />
               </div>
 
-              <div className="flex items-start justify-between gap-2 text-xs text-azure-500">
-                <label className="flex items-start gap-2">
-                  <input
-                    type="checkbox"
-                    required
-                    checked={agreed}
-                    onChange={(e) => setAgreed(e.target.checked)}
-                    className="mt-0.5"
-                  />
-                  개인정보 수집 및 이용에 동의합니다.
-                </label>
-                <LegalModal
-                  doc="privacy"
-                  className="shrink-0 underline underline-offset-2 hover:text-azure-800"
-                >
-                  내용 보기
-                </LegalModal>
+              {/* Checkbox pinned to the first line; the link drops under the label when space runs out */}
+              <div className="flex items-start gap-2.5 text-sm">
+                <input
+                  id="privacy-agree"
+                  type="checkbox"
+                  required
+                  checked={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-azure-600"
+                />
+                <div className="flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <label htmlFor="privacy-agree" className="text-azure-700">
+                    개인정보 수집·이용 동의{" "}
+                    <span className="font-semibold text-accent-600">(필수)</span>
+                  </label>
+                  <LegalModal
+                    doc="privacy"
+                    onConfirm={() => setAgreed(true)}
+                    className="shrink-0 text-xs text-azure-500 underline underline-offset-2 hover:text-azure-800"
+                  >
+                    내용 보기
+                  </LegalModal>
+                </div>
               </div>
 
               <button
                 type="submit"
-                className="mt-2 rounded-full bg-azure-600 py-3.5 text-base font-semibold text-white transition-colors hover:bg-azure-700"
+                className="mt-1 rounded-full bg-azure-600 py-3.5 text-base font-semibold text-white transition-colors hover:bg-azure-700 sm:mt-2"
               >
                 상담 신청하기
               </button>
