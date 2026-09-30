@@ -57,3 +57,18 @@ export function parseContact(input: unknown): ParseResult {
 
   return { ok: true, data };
 }
+
+// 재피어 문자 발송용 본문 — 재피어에서는 이 필드 하나만 연결하면 됨
+export function formatSmsText(data: ContactPayload, submittedAt: string) {
+  return [
+    "[연우] 새 상담 신청",
+    `이름: ${data.name}`,
+    `연락처: ${data.phone}`,
+    `통화 가능: ${data.callTime}`,
+    `지역: ${data.region} / 업종: ${data.business}`,
+    data.message && `내용: ${data.message}`,
+    `접수: ${submittedAt}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}

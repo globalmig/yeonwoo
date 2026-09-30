@@ -1,4 +1,4 @@
-import { HONEYPOT_FIELD, parseContact } from "@/lib/contact";
+import { HONEYPOT_FIELD, formatSmsText, parseContact } from "@/lib/contact";
 
 const ZAPIER_TIMEOUT_MS = 10_000;
 
@@ -31,6 +31,8 @@ export async function POST(request: Request) {
     return Response.json({ error: result.error }, { status: 400 });
   }
 
+  const submittedAt = nowKST();
+
   try {
     const res = await fetch(webhookUrl, {
       method: "POST",
@@ -38,7 +40,8 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         ...result.data,
         privacyAgreed: true,
-        submittedAt: nowKST(),
+        submittedAt,
+        smsText: formatSmsText(result.data, submittedAt),
       }),
       signal: AbortSignal.timeout(ZAPIER_TIMEOUT_MS),
     });
