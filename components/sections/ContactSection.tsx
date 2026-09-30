@@ -82,6 +82,22 @@ export default function ContactSection() {
               </div>
 
               <div>
+                <label
+                  htmlFor="call-time"
+                  className="mb-1.5 block text-sm font-medium text-azure-800"
+                >
+                  통화 가능 시간
+                </label>
+                <input
+                  id="call-time"
+                  type="text"
+                  required
+                  placeholder="예: 평일 오후 2시 이후"
+                  className="w-full rounded-lg border border-azure-200 px-4 py-3 text-sm text-azure-900 outline-none placeholder:text-azure-300 focus:border-azure-500"
+                />
+              </div>
+
+              <div>
                 <span className="mb-1.5 block text-sm font-medium text-azure-800">
                   사업 지역
                 </span>

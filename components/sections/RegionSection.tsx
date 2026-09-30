@@ -20,11 +20,11 @@ export default function RegionSection() {
           >
             <div className="relative min-h-80 sm:min-h-0">
               <Image
-                src="/view.jpg"
-                alt="강을 따라 아파트와 주택가가 펼쳐진 도심과 산을 내려다본 항공 풍경"
+                src="/images/person2.png"
+                alt="태블릿으로 자료를 보여주며 사장님과 상담하는 상담사"
                 fill
                 sizes="(min-width: 1280px) 400px, (min-width: 640px) 340px, 100vw"
-                className="object-cover object-[40%_60%]"
+                className="object-cover object-[60%_30%]"
               />
             </div>
 

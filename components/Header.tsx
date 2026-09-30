@@ -126,7 +126,7 @@ export default function Header() {
           </span>
         </a>
 
-        <nav aria-label="주요 메뉴" className="hidden items-center gap-6 lg:flex xl:gap-8">
+        <nav aria-label="주요 메뉴" className="ml-auto mr-6 hidden items-center gap-6 lg:flex xl:mr-8 xl:gap-8">
           {NAV_LINKS.map((link) => {
             const active = link.href === activeHref;
             return (
