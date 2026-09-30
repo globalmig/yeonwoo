@@ -3,17 +3,42 @@
 import { useState, type FormEvent } from "react";
 import { LuMapPin, LuUser } from "react-icons/lu";
 import LegalModal from "@/components/LegalModal";
+import { HONEYPOT_FIELD, REGIONS } from "@/lib/contact";
+import { COMPANY } from "@/lib/legal";
 
-const REGIONS = ["상주", "문경", "예천", "기타"];
+const FALLBACK_ERROR = `일시적인 오류로 접수되지 않았습니다. 잠시 후 다시 시도하시거나 ${COMPANY.phone}로 전화 주세요.`;
 
 export default function ContactSection() {
   const [region, setRegion] = useState("상주");
   const [agreed, setAgreed] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    if (status === "submitting") return;
+
+    setStatus("submitting");
+    setError(null);
+    const fields = Object.fromEntries(new FormData(e.currentTarget));
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, region, privacyAgreed: agreed }),
+      });
+      if (res.ok) {
+        setStatus("done");
+        return;
+      }
+      // 400은 입력값 문제라 서버 메시지를 그대로 보여주고, 그 외는 공통 안내
+      const data = await res.json().catch(() => null);
+      setError(res.status === 400 && data?.error ? data.error : FALLBACK_ERROR);
+    } catch {
+      setError(FALLBACK_ERROR);
+    }
+    setStatus("idle");
   }
 
   return (
@@ -46,7 +71,7 @@ export default function ContactSection() {
         </div>
 
         <div className="rounded-2xl border border-azure-100 bg-white p-5 shadow-[0_12px_32px_-12px_rgba(43,112,160,0.22)] sm:p-8">
-          {submitted ? (
+          {status === "done" ? (
             <div className="flex flex-col items-center gap-3 py-16 text-center">
               <p className="text-lg font-bold text-azure-900">
                 상담 신청이 접수되었습니다.
@@ -57,13 +82,20 @@ export default function ContactSection() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              {/* 스팸 봇 차단용 허니팟 — 사람에게는 보이지 않음 */}
+              <div className="hidden" aria-hidden>
+                <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" />
+              </div>
+
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-azure-800">
                   이름
                 </label>
                 <input
                   type="text"
+                  name="name"
                   required
+                  maxLength={30}
                   placeholder="이름을 입력해주세요"
                   className="w-full rounded-lg border border-azure-200 px-4 py-3 text-sm text-azure-900 outline-none placeholder:text-azure-300 focus:border-azure-500"
                 />
@@ -75,7 +107,9 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="tel"
+                  name="phone"
                   required
+                  maxLength={20}
                   placeholder="연락처를 입력해주세요"
                   className="w-full rounded-lg border border-azure-200 px-4 py-3 text-sm text-azure-900 outline-none placeholder:text-azure-300 focus:border-azure-500"
                 />
@@ -91,7 +125,9 @@ export default function ContactSection() {
                 <input
                   id="call-time"
                   type="text"
+                  name="callTime"
                   required
+                  maxLength={50}
                   placeholder="예: 평일 오후 2시 이후"
                   className="w-full rounded-lg border border-azure-200 px-4 py-3 text-sm text-azure-900 outline-none placeholder:text-azure-300 focus:border-azure-500"
                 />
@@ -125,7 +161,9 @@ export default function ContactSection() {
                 </label>
                 <input
                   type="text"
+                  name="business"
                   required
+                  maxLength={50}
                   placeholder="업종을 입력해주세요"
                   className="w-full rounded-lg border border-azure-200 px-4 py-3 text-sm text-azure-900 outline-none placeholder:text-azure-300 focus:border-azure-500"
                 />
@@ -136,7 +174,9 @@ export default function ContactSection() {
                   상담 내용
                 </label>
                 <textarea
+                  name="message"
                   rows={3}
+                  maxLength={1000}
                   placeholder="상담받고 싶은 내용을 입력해주세요"
                   className="w-full resize-none rounded-lg border border-azure-200 px-4 py-3 text-sm text-azure-900 outline-none placeholder:text-azure-300 focus:border-azure-500"
                 />
@@ -167,11 +207,18 @@ export default function ContactSection() {
                 </div>
               </div>
 
+              {error && (
+                <p role="alert" className="text-sm text-red-600">
+                  {error}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="mt-1 rounded-full bg-azure-600 py-3.5 text-base font-semibold text-white transition-colors hover:bg-azure-700 sm:mt-2"
+                disabled={status === "submitting"}
+                className="mt-1 rounded-full bg-azure-600 py-3.5 text-base font-semibold text-white transition-colors hover:bg-azure-700 disabled:cursor-not-allowed disabled:opacity-60 sm:mt-2"
               >
-                상담 신청하기
+                {status === "submitting" ? "접수 중..." : "상담 신청하기"}
               </button>
             </form>
           )}
