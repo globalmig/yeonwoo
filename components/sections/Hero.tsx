@@ -9,7 +9,7 @@ export default function Hero() {
       {/* Mobile: photo band above the copy. sm+: full-bleed background behind it */}
       <div id="hero-media" className="relative h-85 w-full sm:absolute sm:inset-0 sm:h-auto">
         <Image
-          src="/images/hero/hero-v5.png"
+          src="/images/hero/hero-v6.png"
           alt="상주 · 문경 · 예천에서 사업을 운영하는 사장님들"
           fill
           priority
